@@ -60,19 +60,13 @@ steps:
     publishTestResults: true
     projects: '**/*.Tests.csproj'
 
-- task: DotNetCoreCLI@2
-  displayName: 'install reportgenerator'
-  inputs:
-    command: custom
-    custom: custom
-    arguments: 'dotnet tool install dotnet-reportgenerator-globaltool'
 
 - task: DotNetCoreCLI@2
   displayName: 'Create code coverage report'
   inputs:
     command: custom
     custom: tool
-    arguments: 'run reportgenerator -reports:$(Build.SourcesDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:HtmlInline_AzurePipelines'
+    arguments: 'run $(UserProfile)\.nuget\packages\reportgenerator\5.1.13\tools\net6.0\ReportGenerator.dll -reports:$(Build.SourcesDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:HtmlInline_AzurePipelines'
 
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish code coverage report'
