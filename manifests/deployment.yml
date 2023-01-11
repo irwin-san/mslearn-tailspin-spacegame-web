@@ -1,19 +1,19 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: webAKSClassic
+  name: webaksclassic
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webAKSClassic
+      app: webaksclassic
   template:
     metadata:
       labels:
-        app: webAKSClassic
+        app: webaksclassic
     spec:
       containers:
-        - name: webAKSClassic
-          image: avacasestudywin001.azurecr.io/webwebAKSClassic:#{Build.BuildId}#
+        - name: webaksclassic
+          image: avacasestudywin001.azurecr.io/webaksclassic:#{Build.BuildId}#
           ports:
           - containerPort: 80
